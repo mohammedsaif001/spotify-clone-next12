@@ -15,7 +15,7 @@ import SpotifyAPI, { LOGIN_URL } from '../../../lib/spotify';
 async function refreshAccessToken(token) {
     try {
         SpotifyAPI.setAccessToken(token.accessToken);
-        SpotifyAPI.setAccessToken(token.refreshToken);
+        SpotifyAPI.setRefreshToken(token.refreshToken);
 
         // After sending the above 2 tokens - access token and refresh token, we are getting the new access token ; as the refresh token doesn't expire only the access token does
 
@@ -26,11 +26,11 @@ async function refreshAccessToken(token) {
         return {
             ...token,
             accessToken: refreshedToken.access_token,
-            accessTokenExpires: Date.now() + refreshToken.expires_in * 1000, //1hr as 3600 returns from spotify API
+            accessTokenExpires: Date.now() + refreshedToken.expires_in * 1000, //1hr as 3600 returns from spotify API
             refreshToken: refreshedToken.refresh_token ?? token.refreshToken,// replace if the new one came back else fall back to old refresh token
         }
     } catch (error) {
-        console.error(error);
+        console.error(error.message);
 
         return {
             ...token,
