@@ -10,11 +10,15 @@ const Song = ({ order, track }) => {
     const [isPlaying, setIsPlaying] = useRecoilState(isPlayingState);
 
     const playSong = () => {
-        setCurrentTrackId(track?.track.id);
-        setIsPlaying(true);
-        spotifyApi.play({
-            uris: [track.track.uri]
-        })
+        try {
+            setCurrentTrackId(track?.track.id);
+            setIsPlaying(true);
+            spotifyApi.play({
+                uris: [track.track.uri]
+            })
+        } catch (e) {
+            alert(e.message)
+        }
     };
 
     return (
@@ -22,7 +26,7 @@ const Song = ({ order, track }) => {
             <div className="flex items-center space-x-4" onClick={playSong}>
                 <p>{order + 1}</p>
                 <img
-                    src={track.track.album.images[0].url}
+                    src={track?.track?.album.images[0].url}
                     alt={"Image Song"}
                     loading="lazy"
                     className="h-10 w-10"

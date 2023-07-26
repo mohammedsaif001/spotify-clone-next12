@@ -7,7 +7,7 @@ import {
     RssIcon,
 
 } from "@heroicons/react/outline"
-import {  useSession } from "next-auth/react"
+import { useSession } from "next-auth/react"
 import useSpotify from "../hooks/useSpotify";
 import { useEffect, useState } from "react";
 import { useRecoilState } from "recoil";
@@ -31,7 +31,7 @@ const Sidebar = () => {
     }, [session, spotifyApi])
     console.log(playlistID)
     return (
-        <div className="text-gray-500 p-5 text-xs lg:text-sm border-r border-gray-900 overflow-y-scroll h-screen scrollbar-hide sm:max-w-[12rem] lg:max-w-[15rem] hidden md:inline-flex">
+        <div className="text-gray-500 p-5 text-xs lg:text-sm border-r border-gray-900 overflow-y-scroll h-[85vh] scrollbar-hide sm:max-w-[12rem] lg:max-w-[15rem] hidden md:inline-flex pb-36">
             <div className="space-y-4">
                 <button className="flex items-center space-x-2 hover:text-white">
                     <HomeIcon className="h-5 w-5" />
