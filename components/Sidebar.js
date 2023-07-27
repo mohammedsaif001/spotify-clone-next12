@@ -25,7 +25,7 @@ const Sidebar = () => {
 
             // Getting user playlist
             spotifyApi.getUserPlaylists().then((data) => {
-                setPlaylists(data.body.items)
+                setPlaylists(data?.body.items)
             })
         }
     }, [session, spotifyApi])

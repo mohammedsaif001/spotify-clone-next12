@@ -25,7 +25,7 @@ const Player = () => {
                 setCurrentTrackId(data?.body?.item?.id)
 
                 spotifyApi.getMyCurrentPlaybackState().then((data) => {
-                    setIsPlaying(data.body?.is_playing)
+                    setIsPlaying(data?.body?.is_playing)
                 })
             })
         }
@@ -33,7 +33,7 @@ const Player = () => {
 
     const handlePlayPause = () => {
         spotifyApi.getMyCurrentPlaybackState().then((data) => {
-            if (data.body.is_playing) {
+            if (data?.body.is_playing) {
                 spotifyApi.pause();
                 setIsPlaying(false)
             }
